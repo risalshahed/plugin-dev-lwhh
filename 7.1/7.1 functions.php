@@ -1,0 +1,311 @@
+<?php
+/**
+ * Astra functions and definitions
+ *
+ * @link https://developer.wordpress.org/themes/basics/theme-functions/
+ *
+ * @package Astra
+ * @since 1.0.0
+ */
+
+if ( ! defined( 'ABSPATH' ) ) {
+	exit; // Exit if accessed directly.
+}
+
+/**
+ * Define Constants
+ */
+define( 'ASTRA_THEME_VERSION', '4.0.2' );
+define( 'ASTRA_THEME_SETTINGS', 'astra-settings' );
+define( 'ASTRA_THEME_DIR', trailingslashit( get_template_directory() ) );
+define( 'ASTRA_THEME_URI', trailingslashit( esc_url( get_template_directory_uri() ) ) );
+define( 'ASTRA_PRO_UPGRADE_URL', 'https://wpastra.com/pro/?utm_source=wp&utm_medium=dashboard' );
+
+/**
+ * Minimum Version requirement of the Astra Pro addon.
+ * This constant will be used to display the notice asking user to update the Astra addon to the version defined below.
+ */
+define( 'ASTRA_EXT_MIN_VER', '4.0.0' );
+
+/**
+ * Setup helper functions of Astra.
+ */
+require_once ASTRA_THEME_DIR . 'inc/core/class-astra-theme-options.php';
+require_once ASTRA_THEME_DIR . 'inc/core/class-theme-strings.php';
+require_once ASTRA_THEME_DIR . 'inc/core/common-functions.php';
+require_once ASTRA_THEME_DIR . 'inc/core/class-astra-icons.php';
+
+/**
+ * Update theme
+ */
+require_once ASTRA_THEME_DIR . 'inc/theme-update/astra-update-functions.php';
+require_once ASTRA_THEME_DIR . 'inc/theme-update/class-astra-theme-background-updater.php';
+
+/**
+ * Fonts Files
+ */
+require_once ASTRA_THEME_DIR . 'inc/customizer/class-astra-font-families.php';
+if ( is_admin() ) {
+	require_once ASTRA_THEME_DIR . 'inc/customizer/class-astra-fonts-data.php';
+}
+
+require_once ASTRA_THEME_DIR . 'inc/lib/webfont/class-astra-webfont-loader.php';
+require_once ASTRA_THEME_DIR . 'inc/customizer/class-astra-fonts.php';
+
+require_once ASTRA_THEME_DIR . 'inc/dynamic-css/custom-menu-old-header.php';
+require_once ASTRA_THEME_DIR . 'inc/dynamic-css/container-layouts.php';
+require_once ASTRA_THEME_DIR . 'inc/dynamic-css/astra-icons.php';
+require_once ASTRA_THEME_DIR . 'inc/core/class-astra-walker-page.php';
+require_once ASTRA_THEME_DIR . 'inc/core/class-astra-enqueue-scripts.php';
+require_once ASTRA_THEME_DIR . 'inc/core/class-gutenberg-editor-css.php';
+require_once ASTRA_THEME_DIR . 'inc/core/class-astra-wp-editor-css.php';
+require_once ASTRA_THEME_DIR . 'inc/dynamic-css/block-editor-compatibility.php';
+require_once ASTRA_THEME_DIR . 'inc/dynamic-css/inline-on-mobile.php';
+require_once ASTRA_THEME_DIR . 'inc/dynamic-css/content-background.php';
+require_once ASTRA_THEME_DIR . 'inc/class-astra-dynamic-css.php';
+require_once ASTRA_THEME_DIR . 'inc/class-astra-global-palette.php';
+
+/**
+ * Custom template tags for this theme.
+ */
+require_once ASTRA_THEME_DIR . 'inc/core/class-astra-attr.php';
+require_once ASTRA_THEME_DIR . 'inc/template-tags.php';
+
+require_once ASTRA_THEME_DIR . 'inc/widgets.php';
+require_once ASTRA_THEME_DIR . 'inc/core/theme-hooks.php';
+require_once ASTRA_THEME_DIR . 'inc/admin-functions.php';
+require_once ASTRA_THEME_DIR . 'inc/core/sidebar-manager.php';
+
+/**
+ * Markup Functions
+ */
+require_once ASTRA_THEME_DIR . 'inc/markup-extras.php';
+require_once ASTRA_THEME_DIR . 'inc/extras.php';
+require_once ASTRA_THEME_DIR . 'inc/blog/blog-config.php';
+require_once ASTRA_THEME_DIR . 'inc/blog/blog.php';
+require_once ASTRA_THEME_DIR . 'inc/blog/single-blog.php';
+
+/**
+ * Markup Files
+ */
+require_once ASTRA_THEME_DIR . 'inc/template-parts.php';
+require_once ASTRA_THEME_DIR . 'inc/class-astra-loop.php';
+require_once ASTRA_THEME_DIR . 'inc/class-astra-mobile-header.php';
+
+/**
+ * Functions and definitions.
+ */
+require_once ASTRA_THEME_DIR . 'inc/class-astra-after-setup-theme.php';
+
+// Required files.
+require_once ASTRA_THEME_DIR . 'inc/core/class-astra-admin-helper.php';
+
+require_once ASTRA_THEME_DIR . 'inc/schema/class-astra-schema.php';
+
+/* Setup API */
+require_once ASTRA_THEME_DIR . 'admin/includes/class-astra-api-init.php';
+
+if ( is_admin() ) {
+	/**
+	 * Admin Menu Settings
+	 */
+	require_once ASTRA_THEME_DIR . 'inc/core/class-astra-admin-settings.php';
+	require_once ASTRA_THEME_DIR . 'admin/class-astra-admin-loader.php';
+	require_once ASTRA_THEME_DIR . 'inc/lib/astra-notices/class-astra-notices.php';
+}
+
+/**
+ * Metabox additions.
+ */
+require_once ASTRA_THEME_DIR . 'inc/metabox/class-astra-meta-boxes.php';
+
+require_once ASTRA_THEME_DIR . 'inc/metabox/class-astra-meta-box-operations.php';
+
+/**
+ * Customizer additions.
+ */
+require_once ASTRA_THEME_DIR . 'inc/customizer/class-astra-customizer.php';
+
+/**
+ * Astra Modules.
+ */
+require_once ASTRA_THEME_DIR . 'inc/modules/posts-structures/class-astra-post-structures.php';
+require_once ASTRA_THEME_DIR . 'inc/modules/related-posts/class-astra-related-posts.php';
+
+/**
+ * Compatibility
+ */
+require_once ASTRA_THEME_DIR . 'inc/compatibility/class-astra-gutenberg.php';
+require_once ASTRA_THEME_DIR . 'inc/compatibility/class-astra-jetpack.php';
+require_once ASTRA_THEME_DIR . 'inc/compatibility/woocommerce/class-astra-woocommerce.php';
+require_once ASTRA_THEME_DIR . 'inc/compatibility/edd/class-astra-edd.php';
+require_once ASTRA_THEME_DIR . 'inc/compatibility/lifterlms/class-astra-lifterlms.php';
+require_once ASTRA_THEME_DIR . 'inc/compatibility/learndash/class-astra-learndash.php';
+require_once ASTRA_THEME_DIR . 'inc/compatibility/class-astra-beaver-builder.php';
+require_once ASTRA_THEME_DIR . 'inc/compatibility/class-astra-bb-ultimate-addon.php';
+require_once ASTRA_THEME_DIR . 'inc/compatibility/class-astra-contact-form-7.php';
+require_once ASTRA_THEME_DIR . 'inc/compatibility/class-astra-visual-composer.php';
+require_once ASTRA_THEME_DIR . 'inc/compatibility/class-astra-site-origin.php';
+require_once ASTRA_THEME_DIR . 'inc/compatibility/class-astra-gravity-forms.php';
+require_once ASTRA_THEME_DIR . 'inc/compatibility/class-astra-bne-flyout.php';
+require_once ASTRA_THEME_DIR . 'inc/compatibility/class-astra-ubermeu.php';
+require_once ASTRA_THEME_DIR . 'inc/compatibility/class-astra-divi-builder.php';
+require_once ASTRA_THEME_DIR . 'inc/compatibility/class-astra-amp.php';
+require_once ASTRA_THEME_DIR . 'inc/compatibility/class-astra-yoast-seo.php';
+require_once ASTRA_THEME_DIR . 'inc/compatibility/class-astra-starter-content.php';
+require_once ASTRA_THEME_DIR . 'inc/addons/transparent-header/class-astra-ext-transparent-header.php';
+require_once ASTRA_THEME_DIR . 'inc/addons/breadcrumbs/class-astra-breadcrumbs.php';
+require_once ASTRA_THEME_DIR . 'inc/addons/scroll-to-top/class-astra-scroll-to-top.php';
+require_once ASTRA_THEME_DIR . 'inc/addons/heading-colors/class-astra-heading-colors.php';
+require_once ASTRA_THEME_DIR . 'inc/builder/class-astra-builder-loader.php';
+
+// Elementor Compatibility requires PHP 5.4 for namespaces.
+if ( version_compare( PHP_VERSION, '5.4', '>=' ) ) {
+	require_once ASTRA_THEME_DIR . 'inc/compatibility/class-astra-elementor.php';
+	require_once ASTRA_THEME_DIR . 'inc/compatibility/class-astra-elementor-pro.php';
+	require_once ASTRA_THEME_DIR . 'inc/compatibility/class-astra-web-stories.php';
+}
+
+// Beaver Themer compatibility requires PHP 5.3 for anonymus functions.
+if ( version_compare( PHP_VERSION, '5.3', '>=' ) ) {
+	require_once ASTRA_THEME_DIR . 'inc/compatibility/class-astra-beaver-themer.php';
+}
+
+require_once ASTRA_THEME_DIR . 'inc/core/markup/class-astra-markup.php';
+
+/**
+ * Load deprecated functions
+ */
+require_once ASTRA_THEME_DIR . 'inc/core/deprecated/deprecated-filters.php';
+require_once ASTRA_THEME_DIR . 'inc/core/deprecated/deprecated-hooks.php';
+require_once ASTRA_THEME_DIR . 'inc/core/deprecated/deprecated-functions.php';
+
+
+// user heading change krtece nijer mto
+function astra_wordcount_heading($heading) {
+    $heading = 'Total Words';
+    return $heading;
+}
+
+// ei filter ta "plugin" a lekha "apply_filters()" er vitore lekha "filter" er sathe MATCH kra lagbe MUST
+add_filter('wordcount_heading', 'astra_wordcount_heading');
+
+function astra_wordcount_tag($tag) {
+    $tag = 'h5';
+    return $tag;
+}
+
+add_filter('wordcount_tag', 'astra_wordcount_tag');
+
+
+function astra_wordcount_readingtime_heading($heading) {
+    $heading = 'Time required to read';
+    return $heading;
+}
+
+add_filter('wordcount_readingtime_heading', 'astra_wordcount_readingtime_heading');
+
+
+function astra_wordcount_readingtime_tag($tag) {
+    $tag = 'h6';
+    return $tag;
+}
+
+add_filter('wordcount_readingtime_tag', 'astra_wordcount_readingtime_tag');
+
+// ********** theme developers chasse "PAGE" er mddhe "qrcode" asbe NAA **********
+/* function astra_pqrc_excluded_post_types($post_types) {
+    // $post_types is an ARRAY
+    // array_push($post_types, 'page');
+    // SAME AS ABOVE
+    $post_types[] = 'page';
+    return $post_types;
+}
+
+add_filter('pqrc_excluded_post_types', 'astra_pqrc_excluded_post_types'); */
+
+
+// update dimension
+function astra_pqrc_qrcode_dimension($dimension) {
+    $dimension = '300x250';
+    return $dimension;
+}
+
+// --------------- 7.1 video te, ei line comment kra hoice ---------------
+// add_filter('pqrc_qrcode_dimension', 'astra_pqrc_qrcode_dimension');
+
+
+function before_category_title1() {
+    echo '<p>Before Title 1</p>';
+}
+// ****** By Default, Hook er Priority 10 thake
+add_action('astra_before_category_title', 'before_category_title1');
+
+function before_category_title2() {
+    echo '<p>Before Title 2</p>';
+}
+// ****** By Default, Hook er Priority 10 thake
+add_action('astra_before_category_title', 'before_category_title2', 2);
+
+function before_category_title3() {
+    echo '<p>Before Title 3</p>';
+}
+// ****** By Default, Hook er Priority 10 thake
+add_action('astra_before_category_title', 'before_category_title3', -3);
+
+
+function after_category_title() {
+    echo '<p>After Title</p>';
+}
+
+add_action('astra_after_category_title', 'after_category_title');
+
+function after_category_description() {
+    echo '<p>After Description</p>';
+}
+
+add_action('astra_after_category_description', 'after_category_description');
+
+// 6.2 ---------------------- Filter Hook ----------------------
+function beginning_category_page($category_title) {
+    // echo $category_title;
+    // update the visit on page in database
+    if ('dummy' == $category_title) {
+        $visit_count = get_option('category_dummy');   // option_name -> category_dummy
+        $visit_count = $visit_count ? $visit_count : 0;
+        $visit_count++;
+        update_option('category_dummy', $visit_count);
+    }
+}
+
+add_action('astra_category_page', 'beginning_category_page');
+
+// ------------------------ 6.3 Remove HOOKS ------------------------
+// thik jeivabe add kra hoicilo, sheivabei leikha remove kra lagbe, priority thakle dte hbe naile naa
+/* remove_action('astra_before_category_title', 'before_category_title1');
+remove_action('astra_before_category_title', 'before_category_title2', 2);
+remove_action('astra_before_category_title', 'before_category_title3', -3);
+remove_action('astra_after_category_title', 'after_category_title');
+remove_action('astra_after_category_description', 'after_category_description'); */
+
+
+/* 
+------------------------ 6.4 Pluggable Function ------------------------
+****** "Plluggable Function" check kore CHILD_THEME a ei SAME_FUNCTION asey ki na, jodi thake, tahole "parent_theme" a SAME_FUNCTION thakleo RUN krbe NAAA ******
+*/
+if (function_exists('capcase')) {
+    # code...
+    function capcase($text) {
+        // *** filter a always "return" MUST
+        return strtoupper($text);
+    }
+}
+
+add_filter('astra_text', 'capcase');
+
+
+function uppercase_text($param1, $param2) {
+    return ucwords($param1).' '.strtoupper($param2);
+}
+// ****** By Default, Hook er Priority 10 thake
+add_filter('astra_text', 'uppercase_text', 10, 2);
